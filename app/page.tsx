@@ -1,15 +1,25 @@
 import { BlogPosts } from "app/components/posts";
 import { Projects } from "./components/proj";
 import { Experiences } from "./components/exp";
+import Image from "next/image";
 
 export default function Page() {
   return (
     <section>
+      <div className="mb-4 flex justify-center items-center">
+        <Image
+          src="/images/profile.jpg"
+          alt="Kunal"
+          width={250}
+          height={250}
+          className="mx-auto rounded-full object-cover"
+        />
+      </div>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        Kunal Wagle
+        Hey, I'm Kunal Wagle!
       </h1>
       <p className="mb-4">
-        {`I'm Kunal, a CS student at Northeastern graduating this May. I'm passionate about building scalable, practical systems - the kind that handle millions of users and solve real problems. My interests span distributed systems, backend engineering, and machine learning, and I love projects where I can see tangible impact. At Cisco, I built AI agents for network troubleshooting; in research, I explored privacy implications of fairness constraints in ML. Now I'm looking for new grad SWE opportunities where I can keep building things that matter.`}
+        {`I'm a CS student at Northeastern graduating this May, passionate about building scalable, practical systems - the kind that handle millions of users and solve real problems. My interests span distributed systems, backend engineering, and machine learning, and I love projects where I can see tangible impact. At Cisco, I built AI agents for network troubleshooting; in research, I explored privacy implications of fairness constraints in ML. Now I'm looking for new grad SWE opportunities where I can keep building things that matter.`}
       </p>
       <h2 className="mb-4 text-l font-semibold tracking-tighter">
         Latest Experiences
