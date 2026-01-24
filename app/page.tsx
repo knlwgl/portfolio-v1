@@ -1,5 +1,6 @@
 import { BlogPosts } from "app/components/posts";
 import { Projects } from "./components/proj";
+import { Experiences } from "./components/exp";
 
 export default function Page() {
   return (
@@ -10,13 +11,23 @@ export default function Page() {
       <p className="mb-4">
         {`I'm Kunal, a CS student at Northeastern graduating this May. I'm passionate about building scalable, practical systems - the kind that handle millions of users and solve real problems. My interests span distributed systems, backend engineering, and machine learning, and I love projects where I can see tangible impact. At Cisco, I built AI agents for network troubleshooting; in research, I explored privacy implications of fairness constraints in ML. Now I'm looking for new grad SWE opportunities where I can keep building things that matter.`}
       </p>
-      <h2 className="mb-4 text-l font-semibold tracking-tighter">Projects</h2>
+      <h2 className="mb-4 text-l font-semibold tracking-tighter">
+        Latest Experiences
+      </h2>
       <div className="my-4">
-        <Projects />
+        <Experiences limit={3} />
       </div>
-      {/* <h2 className="mb-4 text-l font-semibold tracking-tighter">Posts</h2> */}
+      <h2 className="mb-4 text-l font-semibold tracking-tighter">
+        Latest Projects
+      </h2>
       <div className="my-4">
-        <BlogPosts />
+        <Projects limit={3} />
+      </div>
+      <h2 className="mb-4 text-l font-semibold tracking-tighter">
+        Latest Posts
+      </h2>
+      <div className="my-4">
+        <BlogPosts limit={3} />
       </div>
     </section>
   );

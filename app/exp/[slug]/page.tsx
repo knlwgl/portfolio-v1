@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
-import { getBlogPosts } from "app/blog/utils";
+import { getExperiences } from "app/exp/utils";
 import { formatDate } from "app/lib/utils";
 import { baseUrl } from "app/sitemap";
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts();
+  let posts = getExperiences();
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -13,7 +13,7 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+  let post = getExperiences().find((post) => post.slug === params.slug);
   if (!post) {
     return;
   }
@@ -36,7 +36,7 @@ export function generateMetadata({ params }) {
       description,
       type: "article",
       publishedTime,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: `${baseUrl}/exp/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -52,13 +52,13 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default async function Blog({
+export default async function Experience({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  let post = getBlogPosts().find((post) => post.slug === slug);
+  let post = getExperiences().find((post) => post.slug === slug);
 
   if (!post) {
     notFound();
@@ -72,7 +72,7 @@ export default async function Blog({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "BlogPosting",
+            "@type": "Experience",
             headline: post.metadata.title,
             datePublished: post.metadata.startedOn,
             dateModified: post.metadata.startedOn,
@@ -80,10 +80,10 @@ export default async function Blog({
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
               : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
+            url: `${baseUrl}/exp/${post.slug}`,
             author: {
               "@type": "Person",
-              name: "My Portfolio",
+              name: "Kunal Wagle",
             },
           }),
         }}
@@ -94,6 +94,9 @@ export default async function Blog({
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.startedOn)}
+          {post.metadata.finishedOn !== undefined &&
+            " - " +
+              formatDate(post.metadata.finishedOn, false).replace(" 1", "")}
         </p>
       </div>
       <article className="prose">

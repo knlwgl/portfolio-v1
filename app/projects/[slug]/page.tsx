@@ -20,7 +20,7 @@ export function generateMetadata({ params }) {
 
   let {
     title,
-    publishedAt: publishedTime,
+    startedOn: publishedTime,
     summary: description,
     image,
   } = post.metadata;
@@ -74,8 +74,8 @@ export default async function Project({
             "@context": "https://schema.org",
             "@type": "Project",
             headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
+            datePublished: post.metadata.startedOn,
+            dateModified: post.metadata.startedOn,
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
@@ -93,7 +93,10 @@ export default async function Project({
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
+          {formatDate(post.metadata.startedOn)}
+          {post.metadata.finishedOn !== undefined &&
+            " - " +
+              formatDate(post.metadata.finishedOn, false).replace(" 1", "")}
         </p>
       </div>
       <article className="prose">
