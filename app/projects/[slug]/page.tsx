@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
-import { getBlogPosts } from "app/blog/utils";
+import { getProjects } from "app/projects/utils";
 import { formatDate } from "app/lib/utils";
 import { baseUrl } from "app/sitemap";
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts();
+  let posts = getProjects();
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -13,7 +13,7 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+  let post = getProjects().find((post) => post.slug === params.slug);
   if (!post) {
     return;
   }
@@ -36,7 +36,7 @@ export function generateMetadata({ params }) {
       description,
       type: "article",
       publishedTime,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: `${baseUrl}/projects/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -58,7 +58,7 @@ export default async function Project({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  let post = getBlogPosts().find((post) => post.slug === slug);
+  let post = getProjects().find((post) => post.slug === slug);
 
   if (!post) {
     notFound();
@@ -72,7 +72,7 @@ export default async function Project({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "BlogPosting",
+            "@type": "Project",
             headline: post.metadata.title,
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
@@ -80,10 +80,10 @@ export default async function Project({
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
               : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
+            url: `${baseUrl}/projects/${post.slug}`,
             author: {
               "@type": "Person",
-              name: "My Portfolio",
+              name: "Kunal Wagle",
             },
           }),
         }}
