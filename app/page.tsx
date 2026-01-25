@@ -7,13 +7,15 @@ export default function Page() {
   return (
     <section>
       <div className="mb-4 flex justify-center items-center">
-        <Image
-          src="/images/profile.jpg"
-          alt="Kunal"
-          width={250}
-          height={250}
-          className="mx-auto rounded-full object-cover"
-        />
+        <div className="mx-auto w-[250px] h-[250px] rounded-full overflow-hidden">
+          <Image
+            src="/images/profile.jpg"
+            alt="Kunal"
+            width={250}
+            height={250}
+            className="object-cover object-[center_35%]"
+          />
+        </div>
       </div>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
         Hey, I'm Kunal Wagle!
