@@ -13,7 +13,7 @@ export default function Page() {
             alt="Kunal"
             width={250}
             height={250}
-            className="object-cover object-[center_35%]"
+            className="object-cover object-center"
           />
         </div>
       </div>
