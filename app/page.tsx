@@ -7,13 +7,13 @@ export default function Page() {
   return (
     <section>
       <div className="mb-4 flex justify-center items-center">
-        <div className="mx-auto w-[250px] h-[250px] rounded-full overflow-hidden">
+        <div className="relative w-[250px] h-[250px] rounded-full overflow-hidden">
           <Image
             src="/images/profile.jpg"
             alt="Kunal"
-            width={250}
-            height={250}
-            className="object-cover object-center"
+            fill
+            className="object-cover"
+            sizes="250px"
           />
         </div>
       </div>
