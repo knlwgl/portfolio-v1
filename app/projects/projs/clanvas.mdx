@@ -1,0 +1,35 @@
+---
+title: "Clanvas: streaming social gaming"
+startedOn: "2026-02"
+finishedOn: "2026-04"
+summary: "Extended a social gaming platform with profile customization, real-time multiplayer Pictionary, friends/clans, and leaderboards."
+---
+
+**Technologies:** TypeScript, React, Node.js, WebSockets, PostgreSQL, Google OAuth 2.0, Jira
+
+- Delivered three full user stories across four sprints in a team of four, completing all essential and desirable conditions of satisfaction plus two extension features.
+- Implemented a global leaderboard system with per-user stat aggregation and rank endpoints, integrated with game result persistence across multiple game types.
+- Built accessible UI components with full keyboard navigation, ARIA labels, and a custom color theme builder with WCAG contrast validation.
+- Enforced code quality through GitHub branch protection rules requiring peer approval on all pull requests before merging.
+
+---
+
+### Extending a Social Gaming Platform: Lessons from a Full-Stack Team Project
+
+Clanvas started as a functional but simplistic online gaming platform. Our team of four set out over four sprints to change that, building out three feature areas from scratch: profile customization and SSO, a full social layer with friends, clans, and leaderboards, and a real-time multiplayer Pictionary-style game (drawing + guessing).
+
+#### What we built
+
+The scope was ambitious enough that I wasn't sure we'd land all of it. We did. Every essential and desirable condition of satisfaction across all three user stories shipped, plus two extension features - a custom color theme builder and a "How to Play" modal for Pictionary.
+
+My work spanned the leaderboard backend (aggregation endpoints, rank logic, game result persistence), accessibility (keyboard navigation, ARIA labels, focus indicators), the theme system, and testing. It touched enough of the stack that I rarely felt siloed, which made the project more engaging than I expected: playing pictionary with the team was also an added bonus.
+
+#### What actually caused friction
+
+The hardest part wasn't any single technical problem - it was dependency visibility. Features like the leaderboard UI blocking on the aggregation endpoint, or accessibility testing blocking on component stability, created quiet bottlenecks that only surfaced when someone was already stuck. We caught most of them, but later than we should have.
+
+The fix is straightforward in hindsight: treat dependencies as priority #1 in sprint planning, not something to sort out mid-sprint. Flagging blockers earlier would have kept things moving more smoothl (even just a quick message in the Discord group).
+
+#### Takeaways
+
+Agile works well when the feedback loops are short and blockers are identified fast. The structural decisions we made early - drafting API contracts and data models in Sprint 0 before writing any implementation code, requiring PR approvals before merging - paid dividends consistently throughout the project. The things I'd do differently are all about communication, not processes.
