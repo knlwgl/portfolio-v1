@@ -1,0 +1,25 @@
+---
+title: "Brewer's Conjecture: CAP Theorem"
+startedOn: "2026-05-04"
+summary: "Thoughts on the original paper exploring Brewer's conjecture and the impossibility result of maintaining consistency, availability and partition tolerance all simultaneously."
+---
+
+Whether it was learning about CAP theorem in class or working on real distributed software at Cisco, the impossibility result is almost taken for granted in software engineering. That's why it was so interesting for me to read about the actual formalisation and proof of the result. Side note: it's crazy to think that the paper is almost as old as I am!
+
+#### My understanding
+
+In an asynchronous network,
+
+- Splitting a network into two parts;
+  - If we allow a write to occur in one half and a read in the other half, maintaining availability of the system, it is impossible for the returned data to be consistent (half 2 will not have the new data written to half 1)
+  - If we want the data in the two halves to be consistent, then we would need to reject the write, breaking the availability requirement.
+- In fact, in an asynchronous model it is impossible to guarantee consistency in general because it is impossible to tell if a message has been dropped or simply delayed in transmission- i.e. we have no guarantee that we have received all messages.
+
+In a synchronous network,
+
+- The proof of CAP theorem is the same as in an asynchronous network, the only difference being it is now possible to guarantee consistency if either partition tolerance or availability is sacrificed; Given that a synchronous network implies that a message has an upper limit on its travel time, any node will be able to determine when a message can be considered lost (after the upper limit is exceeded.)
+
+I am finding the tradeoffs and the elegance of distributed systems design to be quite fascinating; I hope to read more about it in the future.
+
+**Source**\
+Seth Gilbert and Nancy Lynch. 2002. Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. SIGACT News 33, 2 (June 2002), 51–59. https://doi.org/10.1145/564585.564601
